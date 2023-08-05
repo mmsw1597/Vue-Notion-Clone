@@ -32,6 +32,7 @@ module.exports = {
         use: [ // 순서 매우 중요! 아래에서부터 위로 loader가 실행된다.
           'vue-style-loader',
           'css-loader',
+          'postcss-loader',
           'sass-loader'
         ]
       }
