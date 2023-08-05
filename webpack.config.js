@@ -13,6 +13,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
     clean: true // 필요 파일 외에 모든 파일을 제거한다.
   },
   module: {
@@ -41,5 +42,8 @@ module.exports = {
         { from: 'static' } // static 폴더에서 파일을 복사하여 dist로 이동 (to 옵션은 생략 가능)
       ]
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 }
