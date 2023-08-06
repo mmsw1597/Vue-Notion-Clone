@@ -52,8 +52,8 @@ export default {
   methods: {
     async workspaceInit() {      
       await this.$store.dispatch('workspace/readWorkspaces')
-      if (this.$forceUpdate.fullPath === '/') {
-        this.$forceUpdate.push({
+      if (this.$route.fullPath === '/') {
+        this.$router.push({
           name: 'Workspace',
           params: {
             id: this.$store.state.workspace.workspaces[0].id
