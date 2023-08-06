@@ -2,7 +2,8 @@ export default {
   namespaced: true,
   state() {
     return {
-      workspaces: []
+      workspaces: [],
+      currentWorkspace: {}
     }
   },
   getters: {},
@@ -41,11 +42,32 @@ export default {
         workspaces
       })
     },
-    readWorkspace() {
-
+    async readWorkspace({ commit }, payload) {
+      const { id } = payload
+      const workspace = await fetch(`https://kdt-frontend.programmers.co.kr/documents/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-username': 'GuNwOoParK1359602@#!%'
+        }
+      }).then(res => res.json())
+      commit('assignState', {
+        currentWorkspace: workspace
+      })
     },
-    updateWorkspace() {
-
+    async updateWorkspace(context, payload) {
+      const { id, title, content } = payload
+      await fetch(`https://kdt-frontend.programmers.co.kr/documents/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-username': 'GuNwOoParK1359602@#!%'
+        },
+        body: JSON.stringify({
+          title,
+          content
+        })
+      }).then(res => res.json())
     },
     async deleteWorkspace({ dispatch }, payload) {
       const { id } = payload
