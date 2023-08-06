@@ -44,12 +44,16 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('workspace/readWorkspaces')
+    this.workspaceInit()
   },
   mounted() {
     this.navInit()
   },
   methods: {
+    async workspaceInit() {      
+      await this.$store.dispatch('workspace/readWorkspaces')
+      console.log(this.$store.state.workspace.currentWorkspacePath)
+    },
     navInit() {
       interact(this.$refs.nav) 
         .resizable({

@@ -2,7 +2,7 @@
   <div class="app__inner">
     <LeftNavBar />
     <div class="app__page">
-      <div class="page__header"></div>
+      <Header />
       <div class="page__container">
         <RouterView />
       </div>
@@ -12,10 +12,12 @@
 
 <script>
 import LeftNavBar from '~/components/LeftNavBar'
+import Header from '~/components/Header'
 
 export default {
   components: {
-    LeftNavBar
+    LeftNavBar,
+    Header
   }
 }
 </script>

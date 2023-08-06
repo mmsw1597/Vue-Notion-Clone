@@ -2,8 +2,8 @@
   <li>
     <div 
       :style="{ paddingLeft: `${14 * depth}px` }"
-      class="title"
       :class="{ active: parseInt($route.params.id, 10) === workspace.id }"
+      class="title"
       @click="$router.push({
         name: 'Workspace',
         params: {
@@ -13,7 +13,7 @@
       <span
         :class="{ active: showChildren }"
         class="material-icons"
-        @click="showChildren = !showChildren">
+        @click.stop="showChildren = !showChildren">
         play_arrow
       </span>
       <span class="text">
@@ -22,12 +22,12 @@
       <div class="actions">
         <span
           class="material-icons"
-          @click="createWorkspace">
+          @click.stop="createWorkspace">
           add
         </span>
         <span
           class="material-icons"
-          @click="deleteWorkspace">
+          @click.stop="deleteWorkspace">
           delete
         </span>
       </div>
@@ -71,8 +71,8 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.params.id, typeof this.$route.params.id)
-    console.log(this.workspace.id, typeof this.workspace.id)
+    this.showChildren = this.$store.state.workspace.currentWorkspacePath
+      .some(workspace => workspace.id === this.workspace.id)
   },
   methods: {
     async createWorkspace() {
